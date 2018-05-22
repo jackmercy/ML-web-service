@@ -13,21 +13,31 @@ router.get('/health-check', (req, res) =>
 );
 
 router.get('/get-ratings-grouped-by-user/:id', (req, res) => {
-    let userId = req.params.id;
+    let userId = Number(req.params.id);
+    if (isNaN(userId)) {
+        res.json({ message: 'Invalid user ID'});
+    }
     let listRatings = _ratingsGroupedByUser[userId];
-    let userListRatings = Object.keys(listRatings);
+    console.log(listRatings);
+    if (listRatings == null) {
+        res.json({ message: 'Invalid user Id!'});
+    }
+    let movieId = Object.keys(listRatings);
+    let result = [];
+    movieId.forEach(val => {
+        var obj = {
+            movieId: val,
+            rating: listRatings[val].rating
+        }
+        result.push(obj);
+    });
     const msg = {
-        movieId: userListRatings
+        result: result
     };
     res.json(msg);
 });
 
 router.use('/linear-regression', linearRegressionRoutes);
 router.use('/content-based', contentBasedRoutes);
-// router.use('/content-based');
-/* 
-router.use('/user', userRoutes);
-router.use('/candidate', candidateRoutes);
-router.use('/contract', contractRoutes); */
 
 export default router;
