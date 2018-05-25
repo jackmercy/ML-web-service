@@ -1,14 +1,14 @@
 import { sliceAndDice }  from '../index';
-import predictWithContentBased from '../strategies/contentBased';
+import {predictWithContentBased,predictWithContentBasedUsingID} from '../strategies/contentBased';
 /**
  * POST: [/prediction]
  * JSON req: {
- *      "title": "Batman"
+ *      "id": "1726"
  * }
  */
 function predictBasedOnContent(req, res) {
-    const _title = req.body.title;
-    const contentBasedRecommendation = predictWithContentBased(matrix, movies_in_list, _title);
+    const _id = req.body.id;
+    const contentBasedRecommendation = predictWithContentBasedUsingID(matrix, movies_in_list, _id);
     
     const result = sliceAndDice(contentBasedRecommendation, movies_by_id, 10, true);
 

@@ -62,7 +62,7 @@ function fromMetaDataFile(row) {
     revenue: row.revenue,
     runtime: row.runtime,
     voteAverage: row.vote_average,
-    voteCount: row.vote_count,
+    voteCount: row.vote_count
   };
 }
 
@@ -267,8 +267,8 @@ export function sliceAndDice(recommendations, MOVIES_BY_ID, count, onlyTitle) {
   recommendations = recommendations.filter(recommendation => MOVIES_BY_ID[recommendation.movieId]);
 
   recommendations = onlyTitle
-    ? recommendations.map(mr => ({ title: MOVIES_BY_ID[mr.movieId].title, score: mr.score }))
-    : recommendations.map(mr => ({ movie: MOVIES_BY_ID[mr.movieId], score: mr.score }));
+    ? recommendations.map(mr => ({ id: mr.movieId, title: MOVIES_BY_ID[mr.movieId].title, score: mr.score }))
+    : recommendations.map(mr => ({ id: mr.movieId, movie: MOVIES_BY_ID[mr.movieId], score: mr.score }));
 
   return recommendations
     .slice(0, count);

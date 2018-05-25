@@ -1,6 +1,7 @@
 import express from 'express';
 import linearRegressionRoutes from './linearRegression.route';
 import contentBasedRoutes from './contentBased.route';
+import { getMovieIndexByTitle, getMovieIndexById } from '../strategies/common';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -34,6 +35,27 @@ router.get('/get-ratings-grouped-by-user/:id', (req, res) => {
     const msg = {
         result: result
     };
+    res.json(msg);
+});
+/**
+ * POST: []
+ * JSON: {
+ *      title: ['Iron Man', 'Batman']
+ * }
+ */
+router.post('/get-movie-by-id', (req, res) => {
+    const _idList = req.body.id;
+    const msg = {
+        result: []
+    }
+    _idList.forEach(val => {
+        const { id, title } = getMovieIndexById(movies_in_list, val);
+        var obj = {
+            id: id,
+            title: title
+        }
+        msg.result.push(obj);
+    });
     res.json(msg);
 });
 
