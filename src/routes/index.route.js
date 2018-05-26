@@ -49,10 +49,11 @@ router.post('/get-movie-by-id', (req, res) => {
         result: []
     }
     _idList.forEach(val => {
-        const { id, title } = getMovieIndexById(movies_in_list, val);
+        const { index, id, title } = getMovieIndexById(movies_in_list, val);
         var obj = {
             id: id,
-            title: title
+            title: title,
+            poster_path: movies_in_list[index].poster_path
         }
         msg.result.push(obj);
     });

@@ -62,7 +62,8 @@ function fromMetaDataFile(row) {
     revenue: row.revenue,
     runtime: row.runtime,
     voteAverage: row.vote_average,
-    voteCount: row.vote_count
+    voteCount: row.vote_count,
+    poster_path: row.poster_path
   };
 }
 
@@ -135,7 +136,7 @@ app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000');
+
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
