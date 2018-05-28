@@ -14,30 +14,32 @@ router.get('/health-check', (req, res) =>
 );
 
 router.get('/get-ratings-grouped-by-user/:id', (req, res) => {
-    let userId = Number(req.params.id);
+    let userId = req.params.id;
     if (isNaN(userId)) {
         res.json({ message: 'Invalid user ID'});
     }
+    /* let indexList = Object.keys(_ratingsGroupedByUser);
+    let index = indexList.findIndex(val => val === String(userId)); */
     let listRatings = _ratingsGroupedByUser[userId];
-    if (listRatings == null) {
+    
+    if (listRatings === null) {
         res.json({ message: 'Invalid user Id!'});
     }
     let movieId = Object.keys(listRatings);
-    let result = [];
+    
+    const msg = {
+        result: []
+    };
+    
     movieId.forEach(val => {
-        const { index, id, title } = getMovieIndexById(movies_in_list, val);
         var obj = {
             id: val,
-            title: title,
-            poster_path: movies_in_list[index].poster_path,
-            genres: movies_in_list[index].genres,
             rating: listRatings[val].rating
         }
-        result.push(obj);
+        msg.result.push(obj);
     });
-    const msg = {
-        result: result
-    };
+    
+    
     res.json(msg);
 });
 /**

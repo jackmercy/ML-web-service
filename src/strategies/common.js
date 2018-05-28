@@ -28,8 +28,12 @@ export function getMovieIndexByTitle(MOVIES_IN_LIST, query) {
 export function getMovieIndexById(MOVIES_IN_LIST, query) {
   const index = MOVIES_IN_LIST.map(movie => movie.id).indexOf(query);
 
-  if (!index) {
-    throw new Error('Movie not found');
+  if (!index || index === -1) {
+    /* throw new Error('Movie not found'); */
+    let index = null;
+    let title = null;
+    let id = null;
+    return { index, title, id };
   }
 
   const { title, id } = MOVIES_IN_LIST[index];
