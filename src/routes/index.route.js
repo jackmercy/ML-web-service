@@ -32,11 +32,17 @@ router.get('/get-ratings-grouped-by-user/:id', (req, res) => {
     };
     
     movieId.forEach(val => {
-        var obj = {
-            id: val,
-            rating: listRatings[val].rating
+        const { index, id, title } = getMovieIndexById(movies_in_list, val);
+        if(index) {
+            var obj = {
+                id: val,
+                title: title,
+                poster_path: movies_in_list[index].poster_path || '',
+                genres: movies_in_list[index].genres || [],
+                rating: listRatings[val].rating
+            }
+            msg.result.push(obj);
         }
-        msg.result.push(obj);
     });
     
     
