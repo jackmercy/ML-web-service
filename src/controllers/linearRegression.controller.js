@@ -11,7 +11,6 @@ import { getMovieIndexByTitle, getMovieIndexById } from '../strategies/common';
 function predictBasedOnUser(req, res) {
     const userId = Number(req.body.userId);
     const moviesUserRating = _ratingsGroupedByUser[userId];
-    console.log(moviesUserRating);
     const linearRegressionBasedRecommendation = predictWithLinearRegression(matrix, movies_in_list, moviesUserRating);
     
     const recommend = sliceAndDice(linearRegressionBasedRecommendation, movies_by_id, 20, true);

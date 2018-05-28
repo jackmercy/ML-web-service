@@ -34,7 +34,7 @@ function predictWithLinearRegression(X, MOVIES_IN_LIST, ratings) {
       // Keep a reference to map the predictions later to movies
       result.test.references.push(movie.id);
     }
-
+    
     return result;
   }, init);
 
