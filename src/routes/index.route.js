@@ -27,7 +27,7 @@ router.get('/get-ratings-grouped-by-user/:id', (req, res) => {
     movieId.forEach(val => {
         const { index, id, title } = getMovieIndexById(movies_in_list, val);
         var obj = {
-            movieId: val,
+            id: val,
             title: title,
             poster_path: movies_in_list[index].poster_path,
             genres: movies_in_list[index].genres,
