@@ -118,7 +118,7 @@ function init([ moviesMetaData, moviesKeywords, ratings ]) {
   } = prepareRatings([ ...ME_USER_RATINGS, ...ratings ]);
 
   global._ratingsGroupedByUser = ratingsGroupedByUser;
-  global._ratingsGroupedByMovie = ratingsGroupedByUser;
+  global._ratingsGroupedByMovie = ratingsGroupedByMovie;
 
 /* Init variable */
 var app = express();
