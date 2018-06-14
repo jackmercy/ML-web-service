@@ -1,9 +1,5 @@
 # Recommendation microservice for ML-Web-app
 
-
-
-
-
 * linear regression with gradient descent learning
 * content based recommendation
 * collaborative filtering (CF) recommendation
